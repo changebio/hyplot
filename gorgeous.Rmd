@@ -26,6 +26,13 @@ JV.theme<-   theme(plot.title = element_text(color="black", size=20, face="bold.
                    )
 ```
 
+```{r set colors}
+tropical=  c('darkorange', 'dodgerblue', 'hotpink', 'limegreen', 'yellow')
+palette(tropical)
+par(pch=19)
+```
+
+
 ```{r example data}
 data(diamonds)
 set.seed(42)
@@ -56,7 +63,7 @@ eg.m<- melt(eg)
 head(eg.m)
 bp <- ggplot(eg.m,aes(x=variable,y=value,fill=cut))  + geom_boxplot(colour = "black",alpha=0.5,size = 2,width = 0.5)
 
-bp + JV.theme
+bp + scale_fill_manual(values = tropical) +JV.theme
 ```
 
 
