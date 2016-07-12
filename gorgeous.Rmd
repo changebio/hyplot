@@ -42,24 +42,21 @@ bp <- bp + labs(x = "",y = "",title="The boxplot between color and carat")
 bp + JV.theme
 ```
 
+```{r violins with random dots}
+bp <- ggplot(small,aes(color,carat))  + geom_violin(colour = "black",alpha=0.5,size = 2,width = 0.5)
+bp <- bp + geom_jitter(width = 0.25,colour = "#3366FF")
+bp <- bp + labs(x = "",y = "",title="The boxplot between color and carat") 
+
+bp + JV.theme
+```
+
+```{r melt data frame}
+eg<- small[,c(2,8:10)]
+eg.m<- melt(eg)
+head(eg.m)
+bp <- ggplot(eg.m,aes(x=variable,y=value,fill=cut))  + geom_boxplot(colour = "black",alpha=0.5,size = 2,width = 0.5)
+
+bp + JV.theme
+```
 
 
-#boxplot with random dots
-#example----
-
-
-p <- ggplot(data = small, mapping = aes(x = carat, y = price,shape=cut,colour=color))
-p+geom_point()
-
-p <- ggplot(small)
-p + geom_histogram(aes(x=price))
-p + geom_point(aes(x=carat, y=price, shape=cut, colour=color))
-p+geom_histogram(aes(x=price, fill=cut), position="fill")+geom_vline(aes(xintercept =price))
-
-p+geom_density(aes(x=price))
-p+geom_density(aes(x=price,fill=clarity))
-
-p<- ggplot(temp)
-p+geom_density(aes(x=M,fill=tag),alpha=0.5)
-
-p+geom_boxplot(aes(x=tag,y=M,fill=tag))
